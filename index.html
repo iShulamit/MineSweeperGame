@@ -1,0 +1,26 @@
+<!-- Shulamit Inbar -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="initGame()" onmouse>
+    <h1>Minesweeper Game</h1>
+    <h2 class="flagscount">⛳</h2>
+    <button onclick="initGame()">😄</button>
+    <h2 id="timer">0</h2>
+    <div class='levels'>
+        <button class="easy" onclick="chooseLevel(this)">Easy</button>
+        <button class="medium" onclick="chooseLevel(this)">Medium</button>
+        <button class="hard" onclick="chooseLevel(this)">Hard</button>
+    </div>
+    <table>
+      <tbody class="board"></tbody>
+    </table>
+</body>
+<script src="js/main.js"></script>
+<script src="js/timer.js"></script>
+</html>

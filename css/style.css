@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    text-align: center;
+
+}
+
+h1, h2, h3, h4, h5, h6{
+    margin: 0;
+}
+
+h1 {
+    background-color: rgb(188, 142, 201);
+    padding: 30px;
+}
+
+h2 {
+    display: inline-block;
+    padding: 20px;
+}
+
+.levels button{
+    padding: 10px;
+}
+
+table {
+    background-color: lightblue;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 8px;
+
+}
+
+.board td {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    transition: .3s;
+    border-radius: 8px;
+    background-color: rgb(239, 245, 245);
+}
