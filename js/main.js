@@ -6,8 +6,7 @@ var EMPTY = '⬜';
 var LOSE = '😰';
 var BTN = '😄';
 
-var rowNum = 4;
-var colNum = 4;
+var gBoardSize = 64;
 var gBoard = [];
 var gGame;
 
@@ -28,8 +27,25 @@ function initGame() {
     renderBoard();
 }
 
-function chooseLevel() {
-    
+function chooseLevel(elBtn) {
+    switch (elBtn.innerText) {
+        case 'Easy':
+            gBoardSize = 16;
+            console.log('gBoardSize=' + gBoardSize);
+            break;
+        case 'Medium':
+            gBoardSize = 64;
+            console.log('gBoardSize=' + gBoardSize);
+            break;
+        case 'Hard':
+            gBoardSize = 144;
+            console.log('gBoardSize=' + gBoardSize);
+            break;
+        default:
+            break;
+    }
+    initGame();
+    return gBoardSize;
 }
 
 function cellClicked(elTd) {
@@ -50,16 +66,27 @@ function cellClicked(elTd) {
         gGame.shownCount++;
     }
 
-    // if (cell.isMine && 
-    //     cell.isFlagged) {
-    //     if (!cell.isMine &&
-    //         cell.isShown) {
-    //         alert('you WIN!')
-    //         stopWatch();
-    //     }
-    // }
+    if (isVictory()) {
+        stopWatch();
+        setTimeout(function(){
+            alert('you WIN!');
+        }, 100)
+    }
     renderBoard();
+
     // console.log('gGame.shownCount=' + gGame.shownCount);
+}
+
+function isVictory() {
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 0; j < gBoard.length; j++) {
+            var cell = gBoard[i][j];
+            if (!((cell.isMine && cell.isFlagged) || cell.isShown)) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 function gameOver() {
@@ -68,18 +95,6 @@ function gameOver() {
     var elBtn = document.querySelector('button');
     elBtn.innerText = LOSE;
 }
-
-// function win(elTd) {
-//     var cellCoord = getCellCoord(elTd.id);
-//     var cell = gBoard[cellCoord.i][cellCoord.j];
-//     if (gGame.isON && 
-//         cell.isShown && !cell.isMine) {
-//         if (cell.isFlagged && cell.isMine) {
-//             alert('you WIN!')
-//             stopWatch();
-//         }
-//     }
-// }
 
 function cellFlaged(elTd) { // right click will not start the game
     var cellCoord = getCellCoord(elTd.id);
@@ -95,8 +110,8 @@ function cellFlaged(elTd) { // right click will not start the game
 }
 
 function showAllMines() {
-    for (var i = 0; i < rowNum; i++) {
-        for (var j = 0; j < colNum; j++) {
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 0; j < gBoard.length; j++) {
             if (gBoard[i][j].isMine) {
                 gBoard[i][j].isShown = true;
             }
@@ -134,22 +149,22 @@ function createMines(board) {
     board[0][0].isMine = true;
     board[1][1].isMine = true;
 
-    for (var i = 0; i < rowNum; i++) {
-        for (var j = 0; j < colNum; j++) {
+    for (var i = 0; i < board.length; i++) {
+        for (var j = 0; j < board[0].length; j++) {
             board[i][j].minesAroundCount = minesAroundCount(board, i, j);
             // console.log('i=' + i + ' j=' + j + ' board[i][j].minesAroundCount= ' + board[i][j].minesAroundCount);
         }
     }
 }
 
-function createBoard(rowNum, colNum) {
+function createBoard() {
     var board = [];
-    rowNum = 4;
-    colNum = 4;
+    console.log('gBoardSize=' + gBoardSize);
+    var boardLength = Math.sqrt(gBoardSize);
 
-    for (var i = 0; i < rowNum; i++) {
+    for (var i = 0; i < boardLength; i++) {
         var row = [];
-        for (var j = 0; j < colNum; j++) {
+        for (var j = 0; j < boardLength; j++) {
             var cell = {
                 minesAroundCount: 0,
                 isShown: false,
