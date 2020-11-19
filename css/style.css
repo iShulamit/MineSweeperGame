@@ -5,40 +5,89 @@
 body{
     margin: 0;
     text-align: center;
-
+    background-image: url('/img/bgc.jpg');
+    background-size: 100%;
 }
 
 h1, h2, h3, h4, h5, h6{
     margin: 0;
 }
 
-h1 {
-    background-color: rgb(188, 142, 201);
+h1{
+    background-color: rgb(196, 196, 196);
+    opacity: 0.25;
     padding: 30px;
+    color: black;
+    font-size: 52px;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.count {
+    font-size: 24px; 
+}
+
+.count button{
+    font-size: 36px; 
+    border-radius: 15px;
+    outline: 0px;
 }
 
 h2 {
     display: inline-block;
     padding: 20px;
+    color: aliceblue;
+    font-family: 'Courier New', Courier, monospace; 
+}
+
+.lives {
+    background-color: aliceblue;
+    opacity: 0.8;
+    padding: 10px;
+    margin: 5px 500px 20px;
+    border-radius: 15px;
+    font-size: 24px;
 }
 
 .levels button{
     padding: 10px;
+    border-radius: 5px;
+    outline: 0px;
+    font-size: 22px;
+    font-family: 'Courier New', Courier, monospace; 
+    cursor: pointer;
 }
 
 table {
-    background-color: lightblue;
+    background-color: rgb(196, 196, 196);
     margin: auto;
     margin-top: 30px;
     border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace; 
 
 }
 
 .board td {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     text-align: center;
     transition: .3s;
     border-radius: 8px;
     background-color: rgb(239, 245, 245);
+
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+}
+
+.board td:hover{
+    background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+    background-color:#f6f6f6;
+}
+
+.board td:active{
+    position:relative;
+    top:1px;
 }
